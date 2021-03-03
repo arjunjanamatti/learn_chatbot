@@ -95,12 +95,24 @@ def bag_of_words(s, words):
     bag = [0 for _ in range(len(words))]
 
     s_words = nltk.word_tokenize(s)
-    s_words = [stemmer.stem(word.lower) for word in s_words]
+    s_words = [stemmer.stem(word.lower()) for word in s_words]
 
     for se in s_words:
         for i, w in enumerate(words):
             if w == se:
-                bag[i].append(1)
+                bag[i] = (1)
 
     return np.array(bag)
+
+def chat():
+    print('Start interacting with the bot!!!, if you want to stop, type "quit"')
+    while True:
+        inputuser = input('You: ')
+        if inputuser.lower() == 'quit':
+            break
+
+        results = model.predict([bag_of_words(inputuser, words)])
+        print(results)
+
+chat()
 
