@@ -85,6 +85,22 @@ net = tflearn.fully_connected(net, n_units=len(output[0]), activation='softmax')
 net = tflearn.regression(net)
 
 model = tflearn.DNN(net)
+try:
+    model.load(model_file='initial_model.tflearn')
+except:
+    model.fit(X_inputs=training, Y_targets=output, n_epoch=1000, batch_size=8, show_metric=True)
+    model.save('initial_model.tflearn')
 
-model.fit(X_inputs=training, Y_targets=output, n_epoch=1000, batch_size=8, show_metric=True)
-model.save('initial_model.tflearn')
+def bag_of_words(s, words):
+    bag = [0 for _ in range(len(words))]
+
+    s_words = nltk.word_tokenize(s)
+    s_words = [stemmer.stem(word.lower) for word in s_words]
+
+    for se in s_words:
+        for i, w in enumerate(words):
+            if w == se:
+                bag[i].append(1)
+
+    return np.array(bag)
+
