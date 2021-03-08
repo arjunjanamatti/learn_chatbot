@@ -34,3 +34,25 @@ print('#### NAMED ENTITY RECOGNITION')
 for entities in doc_ner.ents:
     print(entities.text, entities.label_)
 
+
+class using_spacy:
+    def __init__(self, model, text):
+        self.model = model
+        self.text = text
+        self.nlp = spacy.load(self.model)
+        self.doc = self.nlp(self.text)
+
+
+    def PartsofSpeechTagging(self):
+        for token in self.doc:
+            print(token.text, '\t', token.lemma_, '\t', token.pos_, '\t',
+                  token.tag_, '\t', token.dep_, '\t', token.shape_, '\t',
+                  token.is_alpha, '\t', token.is_stop)
+
+    def NamedEntityRecognition(self):
+        print('#### NAMED ENTITY RECOGNITION')
+        for entities in doc_ner.ents:
+            print(entities.text, entities.label_)
+        pass
+
+    pass
