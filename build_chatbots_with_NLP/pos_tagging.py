@@ -1,6 +1,6 @@
 import spacy
 
-nlp = spacy.load('en_core_web_trf')
+nlp = spacy.load('en_core_web_sm')
 
 doc = nlp(text='Checking on the parts of speech and tokenization')
 n = 10
@@ -17,4 +17,20 @@ for token in doc:
 # Shape shape of the word (e.g., the capitalization, punctuation, digits format)
 # Alpha is the token an alpha character?
 # Stop is the word a stop word or part of a stop list?
+
+
+#### NAMED ENTITY RECOGNITION
+test_string = u"Google has its headquarters in Mountain View, California having revenue amounted to 109.65 billion US dollars"
+doc_ner = nlp(text=test_string)
+
+my_string = u"Mark Zuckerberg born May 14, 1984 in New York is an American technology entrepreneur and philanthropist best known for co-founding and leading Facebook as its chairman and CEO."
+doc = nlp(my_string)
+for ent in doc.ents:
+    print(ent.text, ent.label_)
+
+
+
+print('#### NAMED ENTITY RECOGNITION')
+for entities in doc_ner.ents:
+    print(entities.text, entities.label_)
 
