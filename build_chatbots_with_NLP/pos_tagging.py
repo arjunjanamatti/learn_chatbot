@@ -26,6 +26,11 @@ class using_spacy:
         displacy.serve(self.doc, style='dep')
         pass
 
+    def NounChunks(self):
+        for chunk in self.doc.noun_chunks:
+            print(chunk.text, chunk.root.text, chunk.root.dep_, chunk.root.head.text)
+        pass
+
     pass
 
 model_1 = 'en_core_web_sm'
@@ -44,5 +49,4 @@ text_3 = "Mark Zuckerberg born May 14, 1984 in New York is an American technolog
 # instance_3.NamedEntityRecognition()
 #
 instance_3 = using_spacy(model_2, text_3)
-instance_3.NamedEntityRecognition()
-instance_3.DisplayDependencyParsing()
+instance_3.NounChunks()
