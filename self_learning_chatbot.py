@@ -19,3 +19,14 @@ article.nlp()
 corpus=article.text
 #print
 print(corpus)
+
+
+#tokenization
+text=corpus
+sent_tokens=nltk.sent_tokenize(text)
+print(sent_tokens)
+
+#creating a dictionary to remove the punctuation
+remove_punct_dict=dict( (ord(punct),None) for punct in string.punctuation)
+print(string.punctuation)
+print(remove_punct_dict)
